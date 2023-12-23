@@ -50,11 +50,9 @@
 
 <div class="container">
 	<div class="chat" bind:this={div}>
-		<header>
-			<article class="ChatGPT">
-				<span>What is your goal ?</span>
-			</article>
-		</header>
+		<article class="ChatGPT">
+			<span>What is your goal ?</span>
+		</article>
 
 		{#each comments as comment}
 			<article class={comment.author}>
