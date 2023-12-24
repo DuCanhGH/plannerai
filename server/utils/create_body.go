@@ -7,6 +7,5 @@ func CreateBody(data string) map[string]interface{} {
 			"role":    "system",
 			"content": data,
 		}},
-		"max_tokens": 50,
 	}
 }
