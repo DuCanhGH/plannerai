@@ -6,8 +6,10 @@ import (
 	"net/http"
 	"os"
 	"planner/api"
+	"planner/middleware"
 
 	"github.com/joho/godotenv"
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -21,8 +23,18 @@ func main() {
 		port = "8080"
 	}
 
-	api.GetQuesHandler()
+	server := http.NewServeMux()
+
+	server.Handle("/getques", middleware.Middleware(api.GetQuesHandler()))
+
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{os.Getenv("CLIENT_URL")},
+		AllowCredentials: true,
+		AllowedMethods:   []string{"POST"},
+	})
+
+	handler := c.Handler(server)
 
 	fmt.Printf("Listening at port %s\n", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }

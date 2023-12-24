@@ -8,8 +8,8 @@ import (
 	"planner/utils"
 )
 
-func GetQuesHandler() {
-	http.HandleFunc("/getques", func(w http.ResponseWriter, r *http.Request) {
+func GetQuesHandler() http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "POST" {
 			bodyBytes, _ := io.ReadAll(r.Body)
 			body := make(map[string]string)
