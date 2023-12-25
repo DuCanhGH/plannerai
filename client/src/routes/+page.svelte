@@ -1,5 +1,8 @@
 <script>
+
+	import { beforeUpdate, afterUpdate } from 'svelte';
 	let div;
+	let autoScroll = false;
 
 	const pause = (ms) => new Promise((fulfil) => setTimeout(fulfil, ms));
 	let comments = [];
@@ -11,9 +14,17 @@
 		// async fetch ();
 	}
 
+	beforeUpdate(() => {
+		autoScroll = div && (div.offsetHeight + div.scrollTop) > (div.scrollHeight - 20);
+	});
+
+	afterUpdate(() => {
+		if (autoScroll) div.scrollTo(0, div.scrollHeight);
+	});
+
 
 	async function handleKeyDown (event){
-		if (event.key === 'Enter' && event.target.value){
+		if (event.key === 'Enter' && event.target.value && !disable){
 			const comment = {
 				author : 'user',
 				text : event.target.value
@@ -43,9 +54,7 @@
 	}
 </script>
 
-<nav>
-	<h1> Gooool!</h1>
-</nav>
+<body>
 
 
 <div class="container">
@@ -60,17 +69,23 @@
 			</article>
 		{/each}
 	</div>
-	<input on:keydown={handleKeyDown} placeholder="Ex : abcxyz, ..." disabled = {disable}/>
+	<input on:keydown={handleKeyDown} placeholder="Ex : abcxyz, ..."/>
 </div>
 
-<style>
-	nav{
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		background-color: #333;
-	}
+</body>
 
+<style>
+	body{
+		align-items: center;
+		/* background: linear-gradient(#eb9292, #f8ff78, #6363c9); */
+		background: #ff7878;
+		/* display: flex; */
+		/* font-family: 'Dosis', 'san-serif'; */
+		font-display: swap;
+		height: inherit;
+		justify-content: center;
+	}
+	
 	h1 {
 		float: left;
 		display: block;
@@ -79,13 +94,27 @@
 		font-size:larger;
 		color: #f0f3ed;
 	}
-
+	
 	.container {
 		display: grid;
 		place-items: center;
-		width: 1400px;
+		width: 1000px;
 		height: 500px;
 		max-height: 500px;
+		justify-content: center;
+
+		backdrop-filter: blur(5.5px);
+		-webkit-backdrop-filter: blur(5.5px);
+		background: rgba (255, 255, 255, 0.75);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
+		color: #232323;
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
+		background: rgba(255, 255, 255, 0.30);
+		border: 1px solid rgba(255, 255, 255, 0.34);
+		flex-basis: 400px;		
 	}
 	
 	.chat {
@@ -94,6 +123,19 @@
 		padding: 0 1em;
 		overflow-y: auto;
 		scroll-behavior: smooth;
+
+		/* backdrop-filter: blur(5.5px);
+		-webkit-backdrop-filter: blur(5.5px);
+		background: rgba (255, 255, 255, 0.75);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
+		color: #232323;
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
+		background: rgba(255, 255, 255, 0.30);
+		border: 1px solid rgba(255, 255, 255, 0.34);
+		flex-basis: 400px; */
 		width: 1000px;
 		height: 500px;
 		max-height: 500px;
