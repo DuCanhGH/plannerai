@@ -32,6 +32,7 @@
 			// doi den khi nao fetch xong
 
 			// await REPLY = GetValue ();
+			div.scrollTo(0, div.scrollHeight);
 			disable = true;
 
 			const reply = {
@@ -123,19 +124,6 @@
 		padding: 0 1em;
 		overflow-y: auto;
 		scroll-behavior: smooth;
-
-		/* backdrop-filter: blur(5.5px);
-		-webkit-backdrop-filter: blur(5.5px);
-		background: rgba (255, 255, 255, 0.75);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
-		color: #232323;
-		backdrop-filter: blur(4px);
-		-webkit-backdrop-filter: blur(4px);
-		background: rgba(255, 255, 255, 0.30);
-		border: 1px solid rgba(255, 255, 255, 0.34);
-		flex-basis: 400px; */
 		width: 1000px;
 		height: 500px;
 		max-height: 500px;
@@ -147,10 +135,6 @@
 
 	.user {
 		text-align: right;
-	}
-
-	.ChatGPT {
-		text-align: left;
 	}
 
 	span {
