@@ -56,6 +56,7 @@
 </script>
 
 <body>
+<img class="logo" src="PLANNER.jpg" alt="Logo" />
 <div class="container">
 	<div class="chat" bind:this={div}>
 		<article class="ChatGPT">
@@ -70,7 +71,7 @@
 	</div>
 	<input on:keydown={handleKeyDown} placeholder="Ex : abcxyz, ..."/>
 </div>
-<p class="posit">Page 3</p>
+<p class="posit">Page 1</p>
 </body>
 
 <style>
@@ -95,11 +96,12 @@
 	}
 	
 	.container {
+		position: relative;
 		display: grid;
 		place-items: center;
 		width: 1000px;
-		height: 500px;
-		max-height: 500px;
+		height: 530px;
+		max-height: 5000px;
 		justify-content: center;
 
 		backdrop-filter: blur(5.5px);
@@ -114,7 +116,14 @@
 		border: 1px solid rgba(255, 255, 255, 0.34);
 		flex-basis: 400px;		
 	}
-	
+	.logo {
+  position: fixed;
+  top: 100px; /* Adjust the top value as needed */
+  right: 100px; /* Adjust the right value as needed */
+  max-width: 200px; /* Set the maximum width of your logo */
+  max-height: 200px; /* Set the maximum height of your logo */
+  z-index: 999; /* Set a high z-index to ensure it appears above other elements */
+}
 	.chat {
     height: 1em;
     flex: 1 1 auto;
@@ -141,7 +150,7 @@
 
 .user span{
 word-wrap: break-word;
-    max-width: 80%; 
+    max-width: 60%; 
     background-color: #0074d9; 
     color: var(--fg-1);
     border-radius: 1em 1em 0 1em;
@@ -149,7 +158,7 @@ word-wrap: break-word;
 }
 .ChatGPT span {
     word-wrap: break-word;
-    max-width: 80%; 
+    max-width: 60%; 
     background-color:   #778899;
     color: var(--fg-1);
     border-radius: 1em 1em 0 1em;
@@ -165,6 +174,7 @@ word-wrap: break-word;
     width: 80%; /* Adjust the percentage as needed */
     height: 30px;
     max-width: 500px;
+    margin-top: 20px;
 }
 .posit{
  position: absolute;
