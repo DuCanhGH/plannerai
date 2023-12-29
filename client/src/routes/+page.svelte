@@ -56,6 +56,13 @@
 </script>
 
 <body>
+  <div class="button-container">
+    <!-- Four buttons inside the container -->
+    <button class="action-button">Who are us?</button>
+    <button class="action-button">Why are us?</button>
+    <button class="action-button">When use this</button>
+    <button class="action-button">How to use</button>
+  </div>
 <img class="logo" src="PLANNER.jpg" alt="Logo" />
 <div class="container">
 	<div class="chat" bind:this={div}>
@@ -75,7 +82,29 @@
 </body>
 
 <style>
-	body{
+ .button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column-reverse; /* Align buttons vertically and reverse order */
+  }
+.action-button {
+  width: 200px;
+    height: 60px;
+   background-color: white;
+  border: 2px solid #fff; /* White border */
+  color: black;
+    margin-bottom: 10px; /* Adjust spacing between buttons */
+    cursor: pointer;
+    transition: background-color 0.9s;
+border: 2px solid black;
+  }
+.action-button:hover {
+  background-color:  black;
+color:white;
+}	
+body{
 		align-items: center;
 		/* background: linear-gradient(#eb9292, #f8ff78, #6363c9); */
 		background: #1E90FF;
