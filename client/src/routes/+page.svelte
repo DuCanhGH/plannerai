@@ -116,6 +116,8 @@
 		background: rgba(255, 255, 255, 0.30);
 		border: 1px solid rgba(255, 255, 255, 0.34);
 		flex-basis: 400px;		
+
+		/* position: absolute; top: 36.1511px; left: 36.1511px; width: 570.698px; height: 289.209px; */
 	}
 	
 	.chat {
@@ -127,6 +129,7 @@
 		width: 1000px;
 		height: 500px;
 		max-height: 500px;
+		/* position: absolute; top: 36.1511px; left: 36.1511px; width: 570.698px; height: 289.209px; */
 	}
 
 	article {
