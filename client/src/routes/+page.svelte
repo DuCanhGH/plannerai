@@ -56,8 +56,6 @@
 </script>
 
 <body>
-
-
 <div class="container">
 	<div class="chat" bind:this={div}>
 		<article class="ChatGPT">
@@ -72,14 +70,14 @@
 	</div>
 	<input on:keydown={handleKeyDown} placeholder="Ex : abcxyz, ..."/>
 </div>
-
+<p class="posit">Page 3</p>
 </body>
 
 <style>
 	body{
 		align-items: center;
 		/* background: linear-gradient(#eb9292, #f8ff78, #6363c9); */
-		background: #ff7878;
+		background: #1E90FF;
 		/* display: flex; */
 		/* font-family: 'Dosis', 'san-serif'; */
 		font-display: swap;
@@ -106,14 +104,13 @@
 
 		backdrop-filter: blur(5.5px);
 		-webkit-backdrop-filter: blur(5.5px);
-		background: rgba (255, 255, 255, 0.75);
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		border-radius: 16px;
 		box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
-		color: #232323;
+		color: #ffffff;
 		backdrop-filter: blur(4px);
 		-webkit-backdrop-filter: blur(4px);
-		background: rgba(255, 255, 255, 0.30);
+		background: #333333;
 		border: 1px solid rgba(255, 255, 255, 0.34);
 		flex-basis: 400px;		
 
@@ -121,15 +118,14 @@
 	}
 	
 	.chat {
-		height: 1em;
-		flex: 1 1 auto;
-		padding: 0 1em;
-		overflow-y: auto;
-		scroll-behavior: smooth;
-		width: 1000px;
-		height: 500px;
-		max-height: 500px;
-		/* position: absolute; top: 36.1511px; left: 36.1511px; width: 570.698px; height: 289.209px; */
+    height: 1em;
+    flex: 1 1 auto;
+    padding: 20px 1em 0; 
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    width: 1000px;
+    height: 500px;
+    max-height: 500px;
 	}
 
 	article {
@@ -145,27 +141,41 @@
 		display: inline-block;
 	}
 
-	.user span {
-		background-color: #0074d9;
-		color: var(--fg-1);
-		border-radius: 1em 1em 0 1em;
-		word-break: break-all;
-	}
-	
-	.ChatGPT span {
-		background-color: #5F9EA0;
-		border-radius: 1em 1em 1em 0;
-		color: var(--fg-1);
-	}
+.user span{
+word-wrap: break-word;
+    max-width: 80%; 
+    background-color: #0074d9; 
+    color: var(--fg-1);
+    border-radius: 1em 1em 0 1em;
+    word-break: break-all;
+}
+.ChatGPT span {
+    word-wrap: break-word;
+    max-width: 80%; 
+    background-color:   #778899;
+    color: var(--fg-1);
+    border-radius: 1em 1em 0 1em;
+    word-break: break-all;
+}
 
 
 	input {
-		place-items: right;
-		border-radius: 0.5em 0.5em 0.5em 0.5em;
-		overflow-y: auto;
-		scroll-behavior: smooth;
-		width: 1000px;
-		height: 30px;
-		max-width: 500px;
-	}
+    place-items: right;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    width: 80%;
+    max-width: 80%;
+    height: auto;
+	word-wrap: break-word;      /* IE 5.5-7 */
+      white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+      white-space: pre-wrap;      /* current browsers */
+}
+.posit{
+ position: absolute;
+    bottom: 10px; 
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+}
 </style>
