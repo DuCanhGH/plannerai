@@ -16,9 +16,8 @@
 	const typing = { author: "ChatGPT", text: "..." };
 
 	$effect(() => {
-		if (div && div.offsetHeight + div.scrollTop > div.scrollHeight - 20) {
-			div.scrollTo(0, div.scrollHeight);
-		}
+		comments;
+		div?.scrollTo(0, div.scrollHeight);
 	});
 
 	const submitChat: HTMLAttributes<HTMLFormElement>["on:submit"] = async (event) => {
