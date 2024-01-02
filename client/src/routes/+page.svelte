@@ -238,6 +238,7 @@ body{
     bottom: 10px; 
     left: 50%;
     transform: translateX(-50%);
-    color: #ffffff;
+    color: #0074d9;
 }
+
 </style>
