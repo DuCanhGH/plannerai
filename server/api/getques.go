@@ -12,12 +12,12 @@ func GetQuesHandler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "POST" {
 			bodyBytes, _ := io.ReadAll(r.Body)
-			body := make(map[string]string)
+			var body utils.Mydata
 			err := json.Unmarshal(bodyBytes, &body)
 			if err != nil {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}
-			questions, err := utils.GetQuesGpt(body["usergoal"])
+			questions, err := utils.GetQuesGpt(body.Usergoal)
 			if err != nil {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}

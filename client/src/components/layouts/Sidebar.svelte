@@ -3,12 +3,12 @@
 	import { slide } from "svelte/transition";
 
 	import { page } from "$app/stores";
+	import ChatGPT from "$components/icons/ChatGPT.svelte";
 	import { clsx } from "$lib/clsx";
 	import { isLinkActive } from "$lib/isLinkActive";
 
 	import { SIDEBAR_LINKS } from "./navbar-constants";
 	import SidebarLink from "./SidebarLink.svelte";
-	import ChatGPT from "$components/icons/ChatGPT.svelte";
 
 	const links = $derived(
 		SIDEBAR_LINKS.map(({ href, ...rest }) => ({
@@ -25,7 +25,7 @@
 	class={clsx(
 		"print:hidden w-full max-h-screen md:w-80 md:shrink-0 z-[50]",
 		"transform-gpu transition-all duration-150 ease-out sticky top-0",
-		"p-2 bg-white dark:bg-black md:bg-transparent dark:md:bg-transparent",
+		"p-2 bg-white dark:bg-slate-800 md:bg-transparent dark:md:bg-transparent",
 		"border-neutral-300 border-b-[0.25px] md:border-b-0 dark:border-gray-700",
 	)}
 >
@@ -117,9 +117,23 @@
 			id="navbar-mobile-menu"
 			transition:slide={{ duration: 200, easing: quintOut, axis: "y" }}
 		>
-			{#each links as { label, image, href, isActive }}
+			{#each links as { label, lastText, image: Image, href, isActive }}
 				<li>
-					<SidebarLink {href} textCenter={false} {isActive}>{label}</SidebarLink>
+					<SidebarLink {href} textCenter={false} {isActive}>
+						{#snippet icon()}
+							<Image
+								width={30}
+								height={30}
+								class="rounded-full max-w-[30px] min-w-[30px] max-h-[30px] min-h-[30px]"
+							/>
+						{/snippet}
+						<span class="flex flex-col gap-[2px]">
+							<span class="text-base">
+								{label}
+							</span>
+							{lastText}
+						</span>
+					</SidebarLink>
 				</li>
 			{/each}
 		</ul>

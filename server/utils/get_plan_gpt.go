@@ -9,15 +9,20 @@ import (
 	"strings"
 )
 
-func GetPlanGpt(usergoal, answers string) ([]string, error){
+var st string
+
+func GetPlanGpt(usergoal string, information []Querry) ([]string, error) {
 	api_key := os.Getenv("OPENAI_API_KEY")
+	for _, val := range information {
+		st += val.Answer + "this is the answer for the question: " + val.Question
+	}
 	body_req := CreateBody(
-		"Make a detail plan for a user whose goal is: " + usergoal + "and there are some details about the user's requirement: " + answers,
+		"Make a detail plan for user whose goal is" + usergoal + "and there are some extra information: " + st,
 	)
 	buffer := new(bytes.Buffer)
 	json.NewEncoder(buffer).Encode(body_req)
 
-	client := &http.Client{}                   
+	client := &http.Client{}
 	req, err := http.NewRequest("POST", endpoint, buffer)
 	if err != nil {
 		return []string{}, err

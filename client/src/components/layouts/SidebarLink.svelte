@@ -34,7 +34,7 @@
 		class={clsx(
 			"w-full h-full font-medium gap-2 px-3 py-2 text-black dark:text-white flex items-center flex-row",
 			textCenter && "text-center",
-			wideText ? "shrink-0 text-base uppercase tracking-widest" : "text-base md:text-sm",
+			wideText ? "shrink-0 text-base uppercase tracking-widest" : "text-sm",
 		)}
 		aria-current={isActive}
 		{...props}

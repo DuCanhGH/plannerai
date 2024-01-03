@@ -10,6 +10,15 @@
 	body {
 		@apply font-sans box-border h-fit bg-slate-100 dark:bg-slate-900 text-black dark:text-white;
 	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	blockquote {
+		@apply text-balance;
+	}
 
 	#root-container {
 		@apply m-0 flex h-fit min-h-screen w-full flex-col p-0;
@@ -21,7 +30,7 @@
 
 @layer utilities {
 	.chat-bubble {
-		@apply w-fit mb-1;
+		@apply w-fit mb-1 max-w-[50%] break-words;
 	}
 	.chat-bubble.self {
 		@apply bg-accent-light dark:bg-accent-dark ml-auto text-white dark:text-black rounded-r-sm rounded-l-xl;
