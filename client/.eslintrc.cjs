@@ -28,6 +28,12 @@ module.exports = {
 			{ ignoreRestSiblings: true, varsIgnorePattern: "^(_|\\$\\$)", argsIgnorePattern: "^_" },
 		],
 		"@typescript-eslint/no-explicit-any": "off",
+		"no-fallthrough": "off",
+		"no-undef": "off",
+		"no-unused-vars": "off",
+		"no-extra-boolean-cast": "off",
+		// Doesn't play nice with using stores...
+		"svelte/valid-compile": "off",
 		"simple-import-sort/imports": "warn",
 		"simple-import-sort/exports": "warn",
 	},

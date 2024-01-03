@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html,
+	body {
+		@apply m-0 flex h-full w-full;
+	}
+	body {
+		@apply font-sans box-border h-fit bg-slate-100 dark:bg-slate-900 text-black dark:text-white;
+	}
+
+	#root-container {
+		@apply m-0 flex h-fit min-h-screen w-full flex-col p-0;
+	}
+	#main-content {
+		@apply flex flex-grow;
+	}
+}
+
+@layer utilities {
+	.chat-bubble {
+		@apply w-fit mb-1;
+	}
+	.chat-bubble.self {
+		@apply bg-accent-light dark:bg-accent-dark ml-auto text-white dark:text-black rounded-r-sm rounded-l-xl;
+	}
+	.chat-bubble.others {
+		@apply bg-gray-300 dark:bg-slate-700 text-black dark:text-white mr-auto rounded-l-sm rounded-r-xl;
+	}
+	.chat-bubble.self:first-child,
+	.chat-bubble.others + .chat-bubble.self {
+		@apply rounded-tr-xl;
+	}
+	.chat-bubble.others:first-child,
+	.chat-bubble.self + .chat-bubble.others {
+		@apply rounded-tl-xl;
+	}
+	.chat-bubble.others::before {
+		@apply right-4;
+	}
+	.chat-bubble.self::before {
+		@apply left-4;
+	}
+}
