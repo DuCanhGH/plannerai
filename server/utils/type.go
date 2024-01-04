@@ -5,6 +5,6 @@ type Querry struct {
 	Answer   string
 }
 type Mydata struct {
-	Usergoal string
+	Usergoal string `json:"usergoal"`
 	Querries []Querry
 }

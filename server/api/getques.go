@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"planner/utils"
 )
@@ -14,6 +15,7 @@ func GetQuesHandler() http.Handler {
 			bodyBytes, _ := io.ReadAll(r.Body)
 			var body utils.Mydata
 			err := json.Unmarshal(bodyBytes, &body)
+			log.Print("Request body: ", body)
 			if err != nil {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}
@@ -21,6 +23,7 @@ func GetQuesHandler() http.Handler {
 			if err != nil {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}
+			log.Print("Length of questions: ", len(questions))
 			resp, _ := json.Marshal(questions)
 			w.Write(resp)
 		}
