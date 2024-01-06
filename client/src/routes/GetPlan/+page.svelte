@@ -1,9 +1,3 @@
-<svelte:head>
-	<link href='https://fonts.googleapis.com/css?family=Sriracha' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Faustina' rel='stylesheet'> 
-    <link href='https://fonts.googleapis.com/css?family=Noto Serif Display' rel='stylesheet'>
-</svelte:head>
-
 <div>
 	<div class="text-center font-sans text-[32px]">
 		<h1 class="mb-0">4 Crucial Steps of</h1>
