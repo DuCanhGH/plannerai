@@ -40,30 +40,28 @@
 		let lastQuestion = comments[comments.length - 1].text;
 		console.log(lastQuestion);
 
-		const response = await fetch(process.env.database_ques, {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify({
-				// usergoal : ...,
-				question: lastQuestion,
-				answer: value,
-			}),
-		});
+		// const response = await fetch(process.env.database_ques, {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-type": "application/json",
+		// 	},
+		// 	body: JSON.stringify({
+		// 		// usergoal : ...,
+		// 		question: lastQuestion,
+		// 		answer: value,
+		// 	}),
+		// });
 
-		const check = await response.json();
-		if (check.ok){
-			console.log ("o..ok");
-		}
+		// const check = await response.json();
+		// if (check.ok){
+		// 	console.log ("o..ok");
+		// }
 
 		
 
-		// await REPLY = GetValue ();
 		chatUl.scrollTo(0, chatUl.scrollHeight);
 		disable = true;
 
-		// cai nay thay bang fetch data, cai nay nghia lam
 		const reply = {
 			author: "ChatGPT",
 			// text : GetValue
@@ -82,6 +80,7 @@
 		disable = false;
 	};
 </script>
+
 
 <div class="w-full flex flex-col px-2 py-4 max-h-dvh gap-3">
 	<ul class="chat grow overflow-y-auto" bind:this={chatUl}>
