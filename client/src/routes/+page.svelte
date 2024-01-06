@@ -40,17 +40,24 @@
 		let lastQuestion = comments[comments.length - 1].text;
 		console.log(lastQuestion);
 
-		// const response = await fetch("UrlOfDatabase", {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-type": "application/json",
-		// 	},
-		// 	body: JSON.stringify({
-		// 		// usergoal : ...,
-		// 		question: lastquestion,
-		// 		answer: event.target.value,
-		// 	}),
-		// });
+		const response = await fetch(process.env.database_ques, {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({
+				// usergoal : ...,
+				question: lastQuestion,
+				answer: value,
+			}),
+		});
+
+		const check = await response.json();
+		if (check.ok){
+			console.log ("o..ok");
+		}
+
+		
 
 		// await REPLY = GetValue ();
 		chatUl.scrollTo(0, chatUl.scrollHeight);
