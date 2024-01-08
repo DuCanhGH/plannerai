@@ -12,12 +12,12 @@ func GetPlanHandler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "POST" {
 			bodyBytes, _ := io.ReadAll(r.Body)
-			var body utils.Mydata
+			var body utils.UserInfo
 			err := json.Unmarshal(bodyBytes, &body)
 			if err != nil {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}
-			questions, err := utils.GetPlanGpt(body.Usergoal, body.Querries)
+			questions, err := utils.GetPlanGpt(body.Usergoal, body.Time, body.Queries)
 			if err != nil {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}
