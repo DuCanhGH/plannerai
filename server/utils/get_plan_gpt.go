@@ -4,20 +4,20 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 	"os"
-	"strings"
 )
 
-var st string
+// func format_plan(plan string) string {
 
-func GetPlanGpt(usergoal string, information []Querry) ([]string, error) {
+// }
+func GetPlanGpt(usergoal string, time string, information []Query) (string, error) {
 	api_key := os.Getenv("OPENAI_API_KEY")
-	for _, val := range information {
-		st += val.Answer + "this is the answer for the question: " + val.Question
-	}
+	information_json, _ := json.Marshal(information)
+
 	body_req := CreateBody(
-		"Make a detail plan for user whose goal is" + usergoal + "and there are some extra information: " + st,
+		"You are a planner. User has a goal is: \"" + Escape(usergoal) + "\" and you have just got information about user's goal with the conversation in json format: " + string(information_json) + ".Divide " + time + " into maximum 10 interval time and tell user what they should do in each time to achieve their goal (just send a json format like this example [{\"time\": \"interval time...\", \"plan\": \"plan in that interval time...\"}...]",
 	)
 	buffer := new(bytes.Buffer)
 	json.NewEncoder(buffer).Encode(body_req)
@@ -25,7 +25,7 @@ func GetPlanGpt(usergoal string, information []Querry) ([]string, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", endpoint, buffer)
 	if err != nil {
-		return []string{}, err
+		return "", err
 	}
 
 	req.Header.Set("Content-Type", "application/json")
@@ -34,14 +34,15 @@ func GetPlanGpt(usergoal string, information []Querry) ([]string, error) {
 	resp, err := client.Do(req)
 
 	if err != nil {
-		return []string{}, err
+		return "", err
 	}
 
 	bodyBytes, _ := io.ReadAll(resp.Body)
 	body_resp := make(map[string]interface{})
 	_ = json.Unmarshal(bodyBytes, &body_resp)
 
-	result := body_resp["choices"].([]interface{})[0].(map[string]interface{})["message"].(map[string]interface{})["content"].(string)
+	plan_result := body_resp["choices"].([]interface{})[0].(map[string]interface{})["message"].(map[string]interface{})["content"].(string)
+	log.Println(plan_result)
 
-	return strings.Split(result, "\n"), nil
+	return plan_result, nil
 }
