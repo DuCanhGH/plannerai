@@ -1,10 +1,11 @@
 package utils
 
-type Querry struct {
-	Question string
-	Answer   string
+type Query struct {
+	Question string `json:"planner"`
+	Answer   string `json:"user"`
 }
-type Mydata struct {
+type UserInfo struct {
 	Usergoal string `json:"usergoal"`
-	Querries []Querry
+	Time     string `json:"time"`
+	Queries  []Query
 }
