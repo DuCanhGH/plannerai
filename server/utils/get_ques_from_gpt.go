@@ -11,11 +11,11 @@ import (
 
 var endpoint = "https://api.openai.com/v1/chat/completions"
 
-func GetQuesGpt(userGoal string) ([]string, error) {
+func GetQuesGpt(userGoal string, time string) ([]string, error) {
 	api_key := os.Getenv("OPENAI_API_KEY")
 
 	body_req := CreateBody(
-		"You are planner assistant and user has a goal is : \" " + userGoal + "\". Can you give some questions for user to get more information about his/her goal (Just send list of questions)",
+		"You are planner assistant. User has a goal is : \" " + Escape(userGoal) + "\" and user want to finish it in " + time + ". Can you give some questions for user to get more information about his/her goal (Just send list of questions)",
 	)
 
 	buffer := new(bytes.Buffer)
