@@ -12,14 +12,16 @@
 		errorText?: string;
 		sameLine?: boolean;
 		value?: any;
+		input?: HTMLInputElement | null;
 	}
 
-	const {
+	let {
 		label,
 		id,
 		errorTextId,
 		errorText,
 		value,
+		input,
 		...rest
 	} = $props<InputProps>();
 </script>
@@ -38,6 +40,7 @@
 	</style>
 	<input
 		{id}
+		bind:this={input}
 		class={clsx(
 			"input block h-[44px] rounded-lg text-sm shadow-md transition-opacity disabled:opacity-50 w-full px-2.5 pt-2.5",
 			"focus:border-accent-light dark:focus:border-accent-dark border border-neutral-400 focus:outline-none dark:border-neutral-700",

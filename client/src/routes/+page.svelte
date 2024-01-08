@@ -3,6 +3,7 @@
 
 	import Input from "$components/Input.svelte";
 	import { clsx } from "$lib/clsx";
+	import { hotkeys } from "$lib/hotkeys.svelte";
 
 	let chatUl = $state<HTMLUListElement | null>(null);
 
@@ -15,6 +16,9 @@
 		},
 	]);
 	let disable = $state(false);
+	let input = $state<HTMLInputElement | null>(null);
+
+	hotkeys([["ctrl+enter", () => input?.focus()]]);
 
 	const typing = { author: "ChatGPT", text: "..." };
 
@@ -57,8 +61,6 @@
 		// 	console.log ("o..ok");
 		// }
 
-		
-
 		chatUl.scrollTo(0, chatUl.scrollHeight);
 		disable = true;
 
@@ -81,7 +83,6 @@
 	};
 </script>
 
-
 <div class="w-full flex flex-col px-2 py-4 max-h-dvh gap-3">
 	<ul class="chat grow overflow-y-auto" bind:this={chatUl}>
 		{#each comments as comment}
@@ -97,6 +98,7 @@
 			label="Type something..."
 			id="chat-input"
 			autocomplete="off"
+			bind:input
 		/>
 		<button disabled={disable} type="submit" style="display: none;" />
 	</form>
