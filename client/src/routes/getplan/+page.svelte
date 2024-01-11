@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import CaptureScreen from '$components/CaptureScreen.svelte';
 
 	let Data : {time : string, plan : string}[];
 
@@ -31,4 +32,6 @@
 			{/each}
 			</div>
 		</div>
+
+	<CaptureScreen />
 </div>
