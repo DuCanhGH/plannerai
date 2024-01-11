@@ -1,6 +1,4 @@
 <script lang="ts">
-	// Dùng typescript đi
-
 	import { onMount } from 'svelte';
 
 	let Data : {time : string, plan : string}[];
