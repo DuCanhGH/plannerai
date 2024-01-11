@@ -37,6 +37,6 @@
 	<CaptureScreen />
 
 	<a href="/mmb" class="fixed bottom-0 left-0 rounded-full bg-lime-400 h-[55px] w-[55px]">
-		<Image src='/src/lib/return.png' />
+		<Image src='client/src/lib/return.png' />
 	</a>
 </div>
