@@ -1,7 +1,9 @@
-<script>
+<script lang="ts">
+	// Dùng typescript đi
+
 	import { onMount } from 'svelte';
 
-	let Data : any[];
+	let Data : {time : string, plan : string}[];
 
 	onMount (async () =>{
 		const resp = await fetch ('http://localhost:8000/blog');
