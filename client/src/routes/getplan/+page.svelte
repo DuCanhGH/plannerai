@@ -4,7 +4,7 @@
 	let Data : {time : string, plan : string}[];
 
 	onMount (async () =>{
-		const resp = await fetch ('http://localhost:8000/blog');
+		const resp = await fetch (process.env.database_ques);
 		Data = await resp.json();
 		console.log(Data.length);
 	});
