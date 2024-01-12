@@ -1,6 +1,7 @@
 <script>
 	import html2canvas from 'html2canvas';
 	import Image from './Image.svelte';
+	import cameraImage from '$lib/camera.png'
 
 	async function CaptureScreen() {
 		const canvas = await html2canvas(document.body);
@@ -15,5 +16,5 @@
 </script>
 
 <button on:click={CaptureScreen} class="fixed bottom-0 right-0 rounded-full bg-lime-400 h-[55px] w-[55px]">
-	<Image src="client/src/lib/camera.png" />
+	<Image src={cameraImage} />
 </button>
