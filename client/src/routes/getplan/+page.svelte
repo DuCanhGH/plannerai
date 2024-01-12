@@ -32,7 +32,7 @@
 <div class="w-full max-h-dvh">
 <div class="w-full max-h-dvh">
 	<div class="pt-[50px] text-center font-sans text-[32px]">
-		<h1 class="mb-0">{Data.length} Crucial Steps of</h1>
+		<h1 class="mb-0">{Data.length} Crucial {Data.length > 1 ? "Steps" : "Step"} of</h1>
 	</div>
 	<div class="pb-[30px] text-center font-serif text-[22px]">
 		<p class="mt-0">Achieving gold medal IOI</p>
