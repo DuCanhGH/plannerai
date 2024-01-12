@@ -2,7 +2,7 @@ package utils
 
 import "log"
 
-func CreateBody(message string) map[string]interface{} {
+func CreateBody(message string, temperature float32) map[string]interface{} {
 	log.Printf("creating body with message %s", message)
 
 	return map[string]interface{}{
@@ -11,5 +11,6 @@ func CreateBody(message string) map[string]interface{} {
 			"role":    "system",
 			"content": message,
 		}},
+		"temperature": temperature,
 	}
 }
