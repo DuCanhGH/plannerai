@@ -56,7 +56,7 @@
 
 	<CaptureScreen />
 
-	<a href="/mmb" class="fixed bottom-0 left-0 rounded-full bg-lime-400 h-[55px] w-[55px]" data-html2canvas-ignore="true">
+	<a href="/" class="fixed bottom-0 left-0 rounded-full bg-lime-400 h-[55px] w-[55px]" data-html2canvas-ignore="true">
 		<Image src={mmb} />
 		<Image src={mmb} />
 	</a>
