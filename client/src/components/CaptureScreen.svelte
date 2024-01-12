@@ -15,6 +15,6 @@
 	}
 </script>
 
-<button on:click={CaptureScreen} class="fixed bottom-0 right-0 rounded-full bg-lime-400 h-[55px] w-[55px]">
+<button on:click={CaptureScreen} class="fixed bottom-0 right-0 rounded-full bg-lime-400 h-[55px] w-[55px]" data-html2canvas-ignore="true">
 	<Image src={cameraImage} />
 </button>
