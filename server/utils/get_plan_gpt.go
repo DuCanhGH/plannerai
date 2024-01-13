@@ -9,9 +9,6 @@ import (
 	"strings"
 )
 
-// func format_plan(plan string) string {
-
-// }
 func GetPlanGpt(usergoal string, time string, information []Query) (string, error) {
 	api_key := os.Getenv("OPENAI_API_KEY")
 	information_json, _ := json.Marshal(information)
