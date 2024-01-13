@@ -7,11 +7,10 @@
 
 	let isLoading = $state(false);
 	const examples = [
-		"Play some video games",
-		"Do some homework",
-		"Do some workout",
-		"Write some code",
-		"Read some books",
+		"Learn programming",
+		"Get into a great school",
+		"Make a startup",
+		"Create a personal project",
 	];
 	let currentExample = $state(0);
 	const incrementExample = () =>
