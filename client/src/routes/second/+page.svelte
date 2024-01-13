@@ -6,7 +6,7 @@
   const handleFormSubmission = () => {
     inputArray.push(inputValue);
     console.log('Input Array:', inputArray);
-    window.location.href = "/second";
+    window.location.href = "/third";
     inputValue = '';
   };
 
@@ -38,7 +38,7 @@
       <h1 class="text-2xl font-semibold mb-4">PLANNER want to know: </h1>
       <form on:submit|preventDefault={handleFormSubmission} class="text-center" id="inputForm">
         <div class="mt-4">
-          <label for="inputField" class="block text-gray-200">What is your goal?</label>
+          <label for="inputField" class="block text-gray-200">How long can you spend ?</label>
           <input bind:value={inputValue} type="text" id="inputField" class="mt-1 p-2 border rounded-md w-full text-gray-800" placeholder="Type something..." required />
         </div>
         <button type="submit" id="storeInput" class="mt-4 bg-gray-800 text-white p-2 rounded-md w-full hover:bg-black">Continue</button>
