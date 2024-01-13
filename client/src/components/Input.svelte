@@ -5,7 +5,7 @@
 
 	import ErrorText from "./ErrorText.svelte";
 
-	interface InputProps extends Omit<HTMLInputAttributes, "placeholder"> {
+	interface InputProps extends Omit<HTMLInputAttributes, "placeholder" | "class"> {
 		label: string;
 		id: string;
 		errorTextId?: string;

@@ -72,6 +72,7 @@
 							width={20}
 							height={20}
 							class="rounded-full max-w-[20px] min-w-[20px] max-h-[20px] min-h-[20px]"
+							aria-hidden="true"
 						/>
 					{/snippet}
 					Planner

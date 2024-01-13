@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+
 	import CaptureScreen from "$components/CaptureScreen.svelte";
 	import Image from "$components/Image.svelte";
 	import mmb from "$lib/return.png"
