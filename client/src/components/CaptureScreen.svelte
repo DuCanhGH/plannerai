@@ -1,9 +1,7 @@
 <script lang="ts">
 	import html2canvas from "html2canvas";
-	import Image from "./Image.svelte";
-	import cameraImage from "$lib/camera.png";
 
-	async function CaptureScreen() {
+	async function captureScreen() {
 		const canvas = await html2canvas(document.body);
 		const dataURL = canvas.toDataURL();
 		const link = document.createElement("a");
@@ -16,10 +14,10 @@
 </script>
 
 <button
-	on:click={CaptureScreen}
+	on:click={captureScreen}
 	class="fixed bottom-3 right-2 rounded-full bg-lime-500 h-[55px] w-[55px] hover:bg-lime-700"
 	data-html2canvas-ignore="true"
 	title="Capture the plan"
 >
-	<Image src={cameraImage} />
+	<enhanced:img src="$images/camera.png" alt="Capture" class="w-[100px] h-auto" />
 </button>

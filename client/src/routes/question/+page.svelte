@@ -1,12 +1,12 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
+	import { page } from "$app/stores";
 	import Input from "$components/Input.svelte";
+	import { PUBLIC_SERVER_URL } from "$env/static/public";
 	import { clsx } from "$lib/clsx";
 	import { hotkeys } from "$lib/hotkeys.svelte";
-	import { page } from "$app/stores";
-	import { onMount } from "svelte";
-	import { PUBLIC_SERVER_URL } from "$env/static/public";
 
 	type Query = {
 		planner: string;
@@ -18,43 +18,49 @@
 	const pause = (ms: number) => new Promise((fulfil) => setTimeout(fulfil, ms));
 
 	let questions: string[];
-	let info: any;
+	let info: any
 
 	let conversation = $state([
 		{
 			author: "Planner",
-			text: "Please answer these questions to get more information",
+			text: "Please answer these questions so that we can provide more information",
 		},
 	]);
 
 	let disable = $state(false);
 
 	onMount(async () => {
-		disable = true
-		info = {
-			usergoal: $page.url.searchParams.get("usergoal"),
-			time: $page.url.searchParams.get("time")
+		disable = true;
+		const userGoal = $page.url.searchParams.get("usergoal");
+		const time = $page.url.searchParams.get("time");
+		if (typeof userGoal !== "string" || typeof time !== "string") {
+			window.location.href = "/";
+			return;
 		}
+		info = {
+			usergoal: decodeURIComponent(userGoal),
+			time: decodeURIComponent(time),
+		};
 		conversation.push({
 			author: "Planner",
-	    text: "...",
-		})
-		let response = await fetch(`${PUBLIC_SERVER_URL}/getques`, {
+			text: "...",
+		});
+		let response = await fetch(new URL("/getques", PUBLIC_SERVER_URL), {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(info)
-		})
+			body: JSON.stringify(info),
+		});
 
-		questions = await response.json()
+		questions = await response.json();
 		conversation.push({
 			author: "Planner",
-	    text: questions[0],
-		})
+			text: questions[0],
+		});
 		conversation = conversation.filter((comment) => comment.text !== "...");
-		disable = false
-	})
+		disable = false;
+	});
 
 	let input = $state<HTMLInputElement | null>(null);
 
@@ -72,7 +78,7 @@
 		});
 	});
 
-	let Queries: Query[] = [];
+	let queries: Query[] = [];
 
 	const submitChat: HTMLAttributes<HTMLFormElement>["on:submit"] = async (event) => {
 		const formData = new FormData(event.currentTarget);
@@ -86,7 +92,7 @@
 		};
 
 		let lastQuestion = conversation[conversation.length - 1].text;
-		Queries.push({
+		queries.push({
 			planner: lastQuestion,
 			user: value,
 		});
@@ -94,14 +100,17 @@
 		chatUl.scrollTo(0, chatUl.scrollHeight);
 		disable = true;
 
-		if(currentIndexQuestion == questions.length){
-			sessionStorage.setItem('request', JSON.stringify({
-				usergoal: info.usergoal,
-				time: info.time,
-				Queries
-			}))
+		if (currentIndexQuestion == questions.length) {
+			sessionStorage.setItem(
+				"request",
+				JSON.stringify({
+					usergoal: info.usergoal,
+					time: info.time,
+					queries,
+				}),
+			);
 
-			window.location.href = '/getplan'
+			window.location.href = "/getplan";
 		}
 
 		const reply = {

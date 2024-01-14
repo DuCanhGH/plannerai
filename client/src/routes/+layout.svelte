@@ -33,6 +33,4 @@
 	<title>Planner</title>
 </svelte:head>
 
-<main id="main-content" class="w-full min-h-[100vh] h-fit">
-	<slot />
-</main>
+<slot />
