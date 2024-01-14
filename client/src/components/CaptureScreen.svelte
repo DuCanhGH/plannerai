@@ -15,6 +15,6 @@
 	}
 </script>
 
-<button on:click={CaptureScreen} class="fixed bottom-0 right-0 rounded-full bg-lime-400 h-[55px] w-[55px]" data-html2canvas-ignore="true">
+<button on:click={CaptureScreen} class="fixed bottom-3 right-2 rounded-full bg-lime-500 h-[55px] w-[55px] hover:bg-lime-700" data-html2canvas-ignore="true" title="Capture the plan">
 	<Image src={cameraImage} />
 </button>

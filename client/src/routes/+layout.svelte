@@ -22,3 +22,13 @@
 <main id="main-content" class="w-full min-w-0">
 	<slot />
 </main>
+<!-- <div class="flex flex-grow w-full flex-col md:flex-row">
+	<Sidebar />
+	<main id="main-content" class="w-full min-w-0">
+		<slot />
+	</main>
+</div> -->
+
+<main class="text-white w-full h-screen">
+	<slot />
+</main>
