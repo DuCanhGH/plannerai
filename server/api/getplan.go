@@ -24,8 +24,7 @@ func GetPlanHandler() http.Handler {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}
 			log.Println("Generate the plan successfully!")
-			resp, _ := json.Marshal(plan)
-			w.Write(resp)
+			w.Write([]byte(plan))
 		}
 	})
 }
