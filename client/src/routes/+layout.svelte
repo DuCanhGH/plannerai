@@ -19,8 +19,6 @@
 	<link rel="canonical" href={$page.url.href} />
 	<!-- <meta name="theme-color" content={isDark ? "#000000" : "#FFFFFF"} /> -->
 </svelte:head>
-<div class="flex flex-grow w-full flex-col md:flex-row">
-	<main id="main-content" class="w-full min-w-0">
-		<slot />
-	</main>
-</div>
+<main id="main-content" class="w-full min-w-0">
+	<slot />
+</main>

@@ -76,8 +76,16 @@
 			<Input
 				label="Type something..."
 				id="planner-question-input"
-				name="userAnswer"
+				name="usergoal"
 				type="text"
+				required
+			/>
+			<h1 class="text-2xl font-semibold">How long do you want to reach that goal?</h1>
+			<Input
+        label="Type something..."
+        id="planner-question-input"
+        name="time"
+        type="text"
 				required
 			/>
 			<button type="submit" class="w-fit" id="planner-question-submit" disabled={isLoading}>

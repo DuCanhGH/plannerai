@@ -4,31 +4,75 @@
 	import Input from "$components/Input.svelte";
 	import { clsx } from "$lib/clsx";
 	import { hotkeys } from "$lib/hotkeys.svelte";
+	import { page } from "$app/stores";
+	import { onMount } from "svelte";
+	import { PUBLIC_SERVER_URL } from "$env/static/public";
+
+	type Query = {
+		planner: string;
+		user: string;
+	};
 
 	let chatUl = $state<HTMLUListElement | null>(null);
 
 	const pause = (ms: number) => new Promise((fulfil) => setTimeout(fulfil, ms));
 
-	let comments = $state([
+	let questions: string[];
+	let info: any;
+
+	let conversation = $state([
 		{
-			author: "ChatGPT",
-			text: "What is your goal ?",
+			author: "Planner",
+			text: "Please answer these questions to get more information",
 		},
 	]);
+
 	let disable = $state(false);
+
+	onMount(async () => {
+		disable = true
+		info = {
+			usergoal: $page.url.searchParams.get("usergoal"),
+			time: $page.url.searchParams.get("time")
+		}
+		conversation.push({
+			author: "Planner",
+	    text: "...",
+		})
+		let response = await fetch(`${PUBLIC_SERVER_URL}/getques`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(info)
+		})
+
+		questions = await response.json()
+		conversation.push({
+			author: "Planner",
+	    text: questions[0],
+		})
+		conversation = conversation.filter((comment) => comment.text !== "...");
+		disable = false
+	})
+
 	let input = $state<HTMLInputElement | null>(null);
 
 	hotkeys([["ctrl+enter", () => input?.focus()]]);
 
-	const typing = { author: "ChatGPT", text: "..." };
+	const typing = { author: "Planner", text: "..." };
+
+	let currentIndexQuestion = 1;
 
 	$effect(() => {
-		comments;
+		conversation;
 		chatUl?.scrollTo({
 			top: chatUl.scrollHeight,
 			behavior: "smooth",
 		});
 	});
+
+	let Queries: Query[] = [];
 
 	const submitChat: HTMLAttributes<HTMLFormElement>["on:submit"] = async (event) => {
 		const formData = new FormData(event.currentTarget);
@@ -41,51 +85,48 @@
 			text: value,
 		};
 
-		let lastQuestion = comments[comments.length - 1].text;
-		console.log(lastQuestion);
-
-		// const response = await fetch(process.env.database_ques, {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-type": "application/json",
-		// 	},
-		// 	body: JSON.stringify({
-		// 		// usergoal : ...,
-		// 		question: lastQuestion,
-		// 		answer: value,
-		// 	}),
-		// });
-
-		// const check = await response.json();
-		// if (check.ok){
-		// 	console.log ("o..ok");
-		// }
+		let lastQuestion = conversation[conversation.length - 1].text;
+		Queries.push({
+			planner: lastQuestion,
+			user: value,
+		});
 
 		chatUl.scrollTo(0, chatUl.scrollHeight);
 		disable = true;
 
+		if(currentIndexQuestion == questions.length){
+			sessionStorage.setItem('request', JSON.stringify({
+				usergoal: info.usergoal,
+				time: info.time,
+				Queries
+			}))
+
+			window.location.href = '/getplan'
+		}
+
 		const reply = {
-			author: "ChatGPT",
-			// text : GetValue
-			text: "Me May Beo",
+			author: "Planner",
+			text: questions[currentIndexQuestion],
 		};
 
-		comments.push(comment);
+		currentIndexQuestion += 1;
+
+		conversation.push(comment);
 
 		event.currentTarget.reset();
 
 		await pause(Math.floor(Math.random() * 500) + 1);
-		comments.push(typing);
+		conversation.push(typing);
 		await pause(Math.floor(Math.random() * 500) + 1);
-		comments.push(reply);
-		comments = comments.filter((comment) => comment.text !== "...");
+		conversation.push(reply);
+		conversation = conversation.filter((comment) => comment.text !== "...");
 		disable = false;
 	};
 </script>
 
 <div class="w-full flex flex-col px-2 py-4 max-h-dvh gap-3">
 	<ul class="chat grow overflow-y-auto" bind:this={chatUl}>
-		{#each comments as comment}
+		{#each conversation as comment}
 			<li class={clsx("chat-bubble", comment.author === "user" ? "self" : "others")}>
 				<div class="px-4 py-2">{comment.text}</div>
 			</li>
