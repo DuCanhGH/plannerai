@@ -1,9 +1,6 @@
 package utils
 
-import "log"
-
 func CreateBody(message string, temperature float32) map[string]interface{} {
-	log.Printf("creating body with message %s", message)
 
 	return map[string]interface{}{
 		"model": "gpt-3.5-turbo",
