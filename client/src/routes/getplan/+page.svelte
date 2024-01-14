@@ -19,8 +19,9 @@
 	let resultPlan: PlanData[] | undefined = $state();
 
 	onMount(async () => {
-		let infomation =
-			'{"usergoal": "I want to get IOI gold medal","time": "2 years","Queries": [{"planner": "1. Have you participated in the IOI competition before? If yes, what was your previous performance?","user": "I\'ve got bronze"},{"planner": "2. How much time are you willing to dedicate to preparation for the IOI competition?","user": "12h per day!"}]}';
+		// let infomation =
+		// 	'{"usergoal": "I want to get IOI gold medal","time": "2 years","Queries": [{"planner": "1. Have you participated in the IOI competition before? If yes, what was your previous performance?","user": "I\'ve got bronze"},{"planner": "2. How much time are you willing to dedicate to preparation for the IOI competition?","user": "12h per day!"}]}';
+		let infomation = sessionStorage.getItem('request')!
 		if (infomation == "") {
 			window.location.href = "/";
 			return;
@@ -33,7 +34,7 @@
 			body: infomation,
 		});
 
-		resultPlan = await resp.json();
+		resultPlan = await resp.json()
 	});
 </script>
 
