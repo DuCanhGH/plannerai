@@ -62,6 +62,7 @@
 		<a
 			href="/"
 			class="fixed bottom-3 left-2 rounded-full bg-lime-500 h-[55px] w-[55px] hover:bg-lime-700"
+			data-html2canvas-ignore="true"
 			title="Generate again"
 		>
 			<Image src={mmb} />

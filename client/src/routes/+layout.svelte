@@ -29,6 +29,6 @@
 	</main>
 </div> -->
 
-<main class="text-white w-full h-screen">
+<main class="w-full min-h-[100vh] h-fit">
 	<slot />
 </main>
