@@ -18,8 +18,5 @@
 	<meta name="twitter:title" content={title} />
 	<link rel="canonical" href={$page.url.href} />
 </svelte:head>
-<main id="main-content" class="w-full min-w-0">
-	<slot />
-</main>
 
 <slot />
