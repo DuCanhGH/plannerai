@@ -17,20 +17,9 @@
 	<meta property="og:title" content={title} />
 	<meta name="twitter:title" content={title} />
 	<link rel="canonical" href={$page.url.href} />
-	<!-- <meta name="theme-color" content={isDark ? "#000000" : "#FFFFFF"} /> -->
 </svelte:head>
 <main id="main-content" class="w-full min-w-0">
 	<slot />
 </main>
-<!-- <div class="flex flex-grow w-full flex-col md:flex-row">
-	<Sidebar />
-	<main id="main-content" class="w-full min-w-0">
-		<slot />
-	</main>
-</div> -->
-
-<svelte:head>
-	<title>Planner</title>
-</svelte:head>
 
 <slot />
